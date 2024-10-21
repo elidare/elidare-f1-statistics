@@ -13,8 +13,8 @@ let options = {
   }
 
 const api = express();
-
 const router = Router();
+
 router.get("/hello", (req, res) => {
     res.send("Hello World!")
 });
