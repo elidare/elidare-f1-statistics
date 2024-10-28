@@ -24,8 +24,29 @@ router.get("/data", async (req, res) => {
 });
 
 router.post("/circuits", async (req, res) => {
-    let year = req.body?.year || "2024"; // TODO magic numbers
+    //let year = req.body?.year || "2024"; // TODO magic numbers
     let limit = req.query?.limit || "30";
+
+    console.log(req.body, req.body?.year);
+
+    let body;
+    
+    // Check if event.body exists and parse it if it's JSON
+    if (req.body) {
+        try {
+            body = JSON.parse(req.body);
+        } catch (error) {
+            console.error("Invalid JSON", error);
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ message: "Invalid JSON" })
+            };
+        }
+    }
+
+    // Access the "year" property if it exists
+    const year = body?.year;
+    console.log("Year:", year); // Should display the value if parsed correctly
 
     try {
         let queryParams = { limit: limit };
