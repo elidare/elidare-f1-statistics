@@ -1,8 +1,13 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
 import axios from "axios";
-import { parseBody } from "./utils.mts";
+import path from 'path';
+import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { parseBody } from "./utils.mjs";
 
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // get the name of the directory
 let options = {
     host: 'ergast.com',
     path: '/api/f1/',
@@ -11,6 +16,8 @@ let options = {
 
 const api = express();
 const router = Router();
+
+api.use(express.json());
 
 // experimental, should be deleted later
 router.get("/data", async (req, res) => {
@@ -25,9 +32,11 @@ router.get("/data", async (req, res) => {
 });
 
 router.post("/circuits", async (req, res) => {
-    let body = parseBody(req);
-    let year = body?.year || "2024"; // TODO magic numbers
+    // let body = parseBody(req);
+    let year = req.body?.year || "2019"; // TODO magic numbers
     let limit = req.query?.limit || "30";
+
+    console.log(req.body, year)
 
     try {
         let queryParams = { limit: limit };
@@ -40,6 +49,30 @@ router.post("/circuits", async (req, res) => {
     }
 });
 
+// router.get("/", (req, res) => {
+//     // res.render('index', {
+//     //     locals: {
+//     //         param: 'some param to see how it works', // TODO
+//     //     },
+//     // });
+//     res.send('Hello')
+// });
+
 api.use("/api/", router);
 
+api.use(cors());
+// Serve the static files from the React app
+api.use(express.static(path.join(__dirname, '../../frontend')));  // TODO
+
+// Route to serve the React app
+api.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/public', 'index.html'));
+});
+
 export const handler = serverless(api);
+
+// for localhost
+const PORT = process.env.PORT || 3000;
+api.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

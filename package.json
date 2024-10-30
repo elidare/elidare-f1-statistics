@@ -3,6 +3,7 @@
     "@netlify/functions": "^2.8.2",
     "@types/express": "^5.0.0",
     "axios": "^1.7.7",
+    "cors": "^2.8.5",
     "express": "^4.21.0",
     "serverless-http": "^3.2.0"
   }
