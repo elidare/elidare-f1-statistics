@@ -19,28 +19,26 @@ const router = Router();
 
 api.use(express.json());
 
-// experimental, should be deleted later
-router.get("/data", async (req, res) => {
-    try {
-        const apiUrl = `http://${options.host}${options.path}`;
-        const response = await axios.get(apiUrl);
-        res.json(response.data);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while fetching data' });
-    }
-});
+// // experimental, should be deleted later
+// router.get("/data", async (req, res) => {
+//     try {
+//         const apiUrl = `http://${options.host}${options.path}`;
+//         const response = await axios.get(apiUrl);
+//         res.json(response.data);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'An error occurred while fetching data' });
+//     }
+// });
 
 router.post("/circuits", async (req, res) => {
-    // let body = parseBody(req);
-    let year = req.body?.year || "2019"; // TODO magic numbers
+    let body = parseBody(req);
+    // let year = req.body?.year || "2019"; // TODO magic numbers
     let limit = req.query?.limit || "30";
-
-    console.log(req.body, year)
 
     try {
         let queryParams = { limit: limit };
-        const apiUrl = `http://${options.host}${options.path}${year}${options.circuits}`; 
+        const apiUrl = `http://${options.host}${options.path}${year}${options.circuits}`;
         const response = await axios.get(apiUrl, { params: queryParams });
         res.json(response.data);
     } catch (error) {
@@ -49,20 +47,13 @@ router.post("/circuits", async (req, res) => {
     }
 });
 
-// router.get("/", (req, res) => {
-//     // res.render('index', {
-//     //     locals: {
-//     //         param: 'some param to see how it works', // TODO
-//     //     },
-//     // });
-//     res.send('Hello')
-// });
+// Allow CORS from any origin (use with caution)
+api.use(cors());
 
 api.use("/api/", router);
 
-api.use(cors());
 // Serve the static files from the React app
-api.use(express.static(path.join(__dirname, '../../frontend')));  // TODO
+api.use(express.static(path.join(__dirname, '../../frontend')));  // TODO bundling
 
 // Route to serve the React app
 api.get('*', (req, res) => {
@@ -71,8 +62,9 @@ api.get('*', (req, res) => {
 
 export const handler = serverless(api);
 
-// for localhost
-const PORT = process.env.PORT || 3000;
-api.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// // TODO delete or rewrite
+// // for local development
+// const PORT = process.env.PORT || 3000;
+// api.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}`);
+// });
