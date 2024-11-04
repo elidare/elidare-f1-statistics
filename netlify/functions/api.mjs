@@ -19,21 +19,9 @@ const router = Router();
 
 api.use(express.json());
 
-// // experimental, should be deleted later
-// router.get("/data", async (req, res) => {
-//     try {
-//         const apiUrl = `http://${options.host}${options.path}`;
-//         const response = await axios.get(apiUrl);
-//         res.json(response.data);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: 'An error occurred while fetching data' });
-//     }
-// });
-
 router.post("/circuits", async (req, res) => {
     let body = parseBody(req);
-    // let year = req.body?.year || "2019"; // TODO magic numbers
+    let year = body?.year || "2019"; // TODO magic numbers // todo req.body
     let limit = req.query?.limit || "30";
 
     try {
