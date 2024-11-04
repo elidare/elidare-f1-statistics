@@ -11,6 +11,7 @@ dotenv.config();
 
 console.log('process.env.NETLIFY', process.env.NETLIFY);
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+console.log('process.env.CONTEXT', process.env.CONTEXT);
 
 // node .\netlify\functions\api.mjs
 // process.env.NETLIFY undefined
