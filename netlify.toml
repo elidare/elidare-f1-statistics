@@ -7,6 +7,5 @@
   status = 200
   to = "/.netlify/functions/api/:splat"
 [context.production.environment]
-# Yes, that is expected behaviour as UNIX environment variables are always returned as strings. So, we expect users to provide strings in the TOML file too.
-# https://answers.netlify.com/t/netlify-deploy-fails-if-netlify-toml-env-vars-are-not-type-string/45850
   NETLIFY="true"
+  SOME_VAR="some_var"
