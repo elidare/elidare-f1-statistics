@@ -6,8 +6,14 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { parseBody } from "./utils.mjs";
 
+console.log('import.meta.url: ', import.meta.url);
+
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
+
+console.log("_____Environment variable REACT_APP_API_BASE_URL:", process.env.REACT_APP_API_BASE_URL);
+
+
 let options = {
     host: 'ergast.com',
     path: '/api/f1/',
