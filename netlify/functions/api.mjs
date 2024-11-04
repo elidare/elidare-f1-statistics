@@ -10,8 +10,8 @@ import { parseBody } from "./utils.mjs";
 dotenv.config();
 
 console.log('process.env.NETLIFY', process.env.NETLIFY);
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 console.log('process.env.CONTEXT', process.env.CONTEXT);
+console.log('process.env', process.env);
 
 // node .\netlify\functions\api.mjs
 // process.env.NETLIFY undefined
