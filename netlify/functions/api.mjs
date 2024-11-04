@@ -1,18 +1,36 @@
 import express, { Router } from "express";
 import serverless from "serverless-http";
+import dotenv from 'dotenv';
 import axios from "axios";
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { parseBody } from "./utils.mjs";
 
-console.log('import.meta.url: ', import.meta.url);
+dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+console.log('process.env.NETLIFY', process.env.NETLIFY);
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+
+// node .\netlify\functions\api.mjs
+// process.env.NETLIFY undefined
+// process.env.NODE_ENV development
+
+// netlify dev
+// process.env.NETLIFY undefined
+// process.env.NODE_ENV development
+//
+
+const __filename = __filename; // get the resolved path to the file
+// https://github.com/netlify/cli/issues/4601
+// ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+// netlify builds the modules as CommonJS, no matter what.
+
 const __dirname = path.dirname(__filename); // get the name of the directory
 
-console.log("_____Environment variable REACT_APP_API_BASE_URL:", process.env.REACT_APP_API_BASE_URL);
-
+// console.log('import.meta.url: ', import.meta.url);
+// console.log('__filename: ', __filename);
+// console.log('__dirname: ', __dirname);
 
 let options = {
     host: 'ergast.com',
@@ -22,12 +40,14 @@ let options = {
 
 const api = express();
 const router = Router();
+const PORT = process.env.EXPRESS_PORT || 5000;
+const API_BASE_URL = process.env.API_BASE_URL || 'https://elidare-f1-statistics.netlify.app/.netlify/functions/api';
 
 api.use(express.json());
 
 router.post("/circuits", async (req, res) => {
-    let body = parseBody(req);
-    let year = body?.year || "2019"; // TODO magic numbers // todo req.body
+    // let body = parseBody(req);
+    let year = req.body?.year || "2019"; // TODO magic numbers // todo req.body
     let limit = req.query?.limit || "30";
 
     try {
@@ -56,9 +76,9 @@ api.get('*', (req, res) => {
 
 export const handler = serverless(api);
 
-// // TODO delete or rewrite
-// // for local development
-// const PORT = process.env.PORT || 3000;
+// TODO delete or rewrite
+// for local development
+
 // api.listen(PORT, () => {
 //     console.log(`Server is running on port ${PORT}`);
 // });
