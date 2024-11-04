@@ -6,6 +6,3 @@
   from = "/api/*"
   status = 200
   to = "/.netlify/functions/api/:splat"
-[context.production.environment]
-  NETLIFY="true"
-  SOME_VAR="some_var"

@@ -9,9 +9,8 @@ import { parseBody } from "./utils.mjs";
 
 dotenv.config();
 
-console.log('process.env.NETLIFY', process.env.NETLIFY);
-console.log('process.env.CONTEXT', process.env.CONTEXT);
-console.log('process.env', process.env);
+console.log('process.env.IS_NETLIFY_PROD', process.env.IS_NETLIFY_PROD);
+console.log('process.env.IS_NETLIFY_DEV', process.env.IS_NETLIFY_DEV);
 
 // node .\netlify\functions\api.mjs
 // process.env.NETLIFY undefined
@@ -21,6 +20,8 @@ console.log('process.env', process.env);
 // process.env.NETLIFY undefined
 // process.env.NODE_ENV development
 //
+// process.env.IS_NETLIFY_PROD undefined
+// process.env.IS_NETLIFY_DEV undefined // TODO what is local development? why doesn't it have the variable?
 
 const __filename = __filename; // get the resolved path to the file
 // https://github.com/netlify/cli/issues/4601
@@ -42,7 +43,6 @@ let options = {
 const api = express();
 const router = Router();
 const PORT = process.env.EXPRESS_PORT || 5000;
-const API_BASE_URL = process.env.API_BASE_URL || 'https://elidare-f1-statistics.netlify.app/.netlify/functions/api';
 
 api.use(express.json());
 
