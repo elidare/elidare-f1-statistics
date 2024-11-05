@@ -17,9 +17,7 @@ const CircuitMap = () => {
         }
 
         try {
-            const data = { year: year }; 
-            const responseData = await getCircuits(data);
-      
+            const responseData = await getCircuits(year);
             setResponse(responseData);
         } catch (err) {
             setError("Failed to get circuits data. Please try again.");
