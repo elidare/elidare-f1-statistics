@@ -5,40 +5,23 @@ import axios from "axios";
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
-import { parseBody } from "./utils.mjs";
 
-dotenv.config();
-
-console.log('process.env.IS_NETLIFY_PROD', process.env.IS_NETLIFY_PROD);
-console.log('process.env.IS_NETLIFY_DEV', process.env.IS_NETLIFY_DEV);
-
-// node .\netlify\functions\api.mjs
-// process.env.NETLIFY undefined
-// process.env.NODE_ENV development
-
-// netlify dev
-// process.env.NETLIFY undefined
-// process.env.NODE_ENV development
-//
-// process.env.IS_NETLIFY_PROD undefined
-// process.env.IS_NETLIFY_DEV undefined // TODO what is local development? why doesn't it have the variable?
-
-const __filename = __filename; // get the resolved path to the file
-// https://github.com/netlify/cli/issues/4601
-// ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
-// netlify builds the modules as CommonJS, no matter what.
-
-const __dirname = path.dirname(__filename); // get the name of the directory
-
-// console.log('import.meta.url: ', import.meta.url);
-// console.log('__filename: ', __filename);
-// console.log('__dirname: ', __dirname);
-
+// API options
 let options = {
     host: 'ergast.com',
     path: '/api/f1/',
     circuits: '/circuits.json'
 }
+
+dotenv.config();
+
+console.log(process.env.IS_NETLIFY_DEV);
+
+// Netlify builds the modules as CommonJS, no matter what.
+// ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+// https://github.com/netlify/cli/issues/4601
+const __filename = process.env.IS_NETLIFY_PROD || process.env.IS_NETLIFY_DEV ? __filename : fileURLToPath(import.meta.url);  // get the resolved path to the file
+const __dirname = path.dirname(__filename); // get the name of the directory
 
 const api = express();
 const router = Router();
@@ -47,8 +30,7 @@ const PORT = process.env.EXPRESS_PORT || 5000;
 api.use(express.json());
 
 router.post("/circuits", async (req, res) => {
-    // let body = parseBody(req);
-    let year = req.body?.year || "2019"; // TODO magic numbers // todo req.body
+    let year = req.body?.year || "2019"; // TODO magic numbers
     let limit = req.query?.limit || "30";
 
     try {
@@ -64,7 +46,6 @@ router.post("/circuits", async (req, res) => {
 
 // Allow CORS from any origin (use with caution)
 api.use(cors());
-
 api.use("/api/", router);
 
 // Serve the static files from the React app
@@ -73,13 +54,17 @@ api.use(express.static(path.join(__dirname, '../../frontend')));  // TODO bundli
 // Route to serve the React app
 api.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/public', 'index.html'));
+}); // TODO site not found
+
+api.get('/', (req, res) => {
+    res.send('Hello'); // TODO delete
 });
 
 export const handler = serverless(api);
 
-// TODO delete or rewrite
 // for local development
-
-// api.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
+if (!process.env.IS_NETLIFY_PROD && !process.env.IS_NETLIFY_DEV) {
+    api.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
