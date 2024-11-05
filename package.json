@@ -8,5 +8,11 @@
     "express": "^4.21.0",
     "react-scripts": "^5.0.1",
     "serverless-http": "^3.2.0"
+  },
+  "scripts": {
+    "start": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "test": "cd frontend && npm test",
+    "eject": "cd frontend && npm run eject"
   }
 }

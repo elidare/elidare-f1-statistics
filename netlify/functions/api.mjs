@@ -47,7 +47,7 @@ api.use(cors());
 api.use("/api/", router);
 
 // Serve the static files from the React app
-api.use(express.static(path.join(__dirname, '../../frontend')));  // TODO bundling
+// api.use(express.static(path.join(__dirname, '../../frontend')));  // TODO bundling
 
 // Route to serve the React app
 // api.get('*', (req, res) => {
