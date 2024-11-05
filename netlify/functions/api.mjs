@@ -15,8 +15,6 @@ let options = {
 
 dotenv.config();
 
-console.log(process.env.IS_NETLIFY_DEV);
-
 // Netlify builds the modules as CommonJS, no matter what.
 // ▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
 // https://github.com/netlify/cli/issues/4601
