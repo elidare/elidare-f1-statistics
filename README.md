@@ -8,9 +8,12 @@ The project uses the public API https://ergast.com/mrd/ that provides statistics
 This visualisation helps fans to quickly access the basic information of a specific season or driver, which can be useful in any discussions on the subject.
 
 ## To-do
-- d3: a world map ??
+- create a new branch and push it to netlify
+- d3: a world map
 - circuits api: body is 4-digit, return empty result if request is incorrect
-- tbd
+- think of more statistics to display
+- make the page look nice
+- take care about todos
 
 ## Project history
 Initially this project was supposed to include both frontend and backend. We had to create a public URL for the project in the very beginning, so Netlify was chosen as something we tried to hello-world in the beginning of the course.
