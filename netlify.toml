@@ -3,7 +3,7 @@
   node_bundler = "esbuild"
 [build]
   base = "frontend"
-  publish = "frontend/build"
+  publish = "build"
   command = "npm run build"
 [[redirects]]
   force = true
