@@ -50,9 +50,9 @@ api.use("/api/", router);
 api.use(express.static(path.join(__dirname, '../../frontend')));  // TODO bundling
 
 // Route to serve the React app
-api.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend/public', 'index.html'));
-}); // TODO site not found
+// api.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../../frontend/public', 'index.html'));
+// }); // TODO site not found
 
 // api.get('/', (req, res) => {
 //     res.send('Hello'); // TODO delete
