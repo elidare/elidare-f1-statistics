@@ -54,9 +54,9 @@ api.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/public', 'index.html'));
 }); // TODO site not found
 
-api.get('/', (req, res) => {
-    res.send('Hello'); // TODO delete
-});
+// api.get('/', (req, res) => {
+//     res.send('Hello'); // TODO delete
+// });
 
 export const handler = serverless(api);
 
