@@ -1,6 +1,9 @@
 [functions]
   external_node_modules = ["express"]
   node_bundler = "esbuild"
+[build]
+  publish = "build"
+  command = "npm run build"
 [[redirects]]
   force = true
   from = "/api/*"
