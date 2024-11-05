@@ -2,7 +2,8 @@
   external_node_modules = ["express"]
   node_bundler = "esbuild"
 [build]
-  publish = "build"
+  base = "frontend"
+  publish = "frontend/build"
   command = "npm run build"
 [[redirects]]
   force = true
