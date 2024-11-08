@@ -31,4 +31,4 @@ At this point I took a deep breath and had a look at the project. Main points I 
 - I wanted to include Express only for the sake of learning it and server architecture, but at the moment it is not just Express, but a very narrow specific feature Netlify functions that causing problems. I keep solving more Netlify issues than Express, which is not my goal with this project.
 - This project doesn't really require backend (as I said, I included backend for the sake of including backend), so best practice would be to follow Keep It Simple Stupid principle.
 
-Considering all said above, I decided to delete everython I have done with backend and just do a nice working SPA.
+Considering all said above, I decided to delete everything I have done with backend and just do a nice working SPA.
