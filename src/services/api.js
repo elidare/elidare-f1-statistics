@@ -20,7 +20,7 @@ const api = axios.create({
 export const getCircuits = async (year) => {
     // TODO check year to be correct
     try {
-      const response = await api.get(`http://${options.host}${options.path}${year}${options.circuits}`);
+      const response = await api.get(`https://${options.host}${options.path}${year}${options.circuits}`);
   
       return response.data;
     } catch (error) {
@@ -28,4 +28,3 @@ export const getCircuits = async (year) => {
       throw error;
     }
 };
-
