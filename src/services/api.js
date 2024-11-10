@@ -28,4 +28,3 @@ export const getCircuits = async (year) => {
       throw error;
     }
 };
-
