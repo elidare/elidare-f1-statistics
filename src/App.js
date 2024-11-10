@@ -10,8 +10,8 @@ function App() {
         </h1>
         <p>
           A project for Lappeenranta-Lahti University of Technology LUT, Fullstack course, autumn 2024.<br/>
-          Uses public API <a href="https://ergast.com/mrd/" target="_blank">by Ergast</a>.<br/>
-          Source code <a href="https://github.com/elidare/elidare-f1-statistics/" target="_blank">at github.</a>
+          Uses public API <a href="https://ergast.com/mrd/" target="_blank" rel="noreferrer">by Ergast</a>.<br/>
+          Source code <a href="https://github.com/elidare/elidare-f1-statistics/" target="_blank" rel="noreferrer">at github.</a>
         </p>
       </header>
       <CircuitMap />
