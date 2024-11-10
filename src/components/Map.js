@@ -3,8 +3,9 @@ import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import worldData from '../assets/countries-110m.json'; // TODO
 
-const WorldMap = ({ data }) => { // TODO add track names
+const WorldMap = ({ points }) => { // TODO add track names
   const svgRef = useRef();
+  const tooltipRef = useRef();
   const map_width = 1200;
   const map_height = 645;
 
@@ -21,33 +22,88 @@ const WorldMap = ({ data }) => { // TODO add track names
     const projection = d3.geoMercator().scale(150).translate([map_width / 2, map_height / 1.5]);
     const path = d3.geoPath().projection(projection);
 
-    // Draw map
-    svg
-      .append("g")
-      .selectAll("path")
-      .data(topojson.feature(worldData, worldData.objects.countries).features)
-      .join("path")
-      .attr("d", path)
-      .attr("fill", "rgba(159, 232, 252, 0.6)")
-      .attr("stroke", "#555");
+    // Create a group for the map and points, which will be zoomed
+    const g = svg.append("g");
 
-    console.log(data);
-    if (data) { // TODO fix useEffect to get points from the beginning
-        // Draw points
-        svg
+    // Draw map
+    g
         .append("g")
-        .selectAll("circle")
-        .data(data)
-        .join("circle")
-        .attr("cx", (d) => projection([d.long, d.lat])[0])
-        .attr("cy", (d) => projection([d.long, d.lat])[1])
-        .attr("r", 5)
-        .attr("fill", "red"); // TODO add name on hover
+        .selectAll("path")
+        .data(topojson.feature(worldData, worldData.objects.countries).features)
+        .join("path")
+        .attr("d", path)
+        .attr("fill", "rgba(159, 232, 252, 0.6)")
+        .attr("stroke", "rgba(109, 182, 202, 0.8)");
+
+    const tooltip = d3.select(tooltipRef.current)
+        .style("position", "absolute")
+        .style("padding", "5px")
+        .style("background", "rgba(0, 0, 0, 0.7)")
+        .style("color", "white")
+        .style("border-radius", "4px")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+    if (points) {
+        // Draw points
+        g
+          .append("g")
+          .selectAll("g")
+          .data(points)
+          .join("g")
+          .attr("transform", d => `translate(${projection([d.long, d.lat])[0]}, ${projection([d.long, d.lat])[1]})`)
+          .each(function (d) {
+              const group = d3.select(this);
+
+              group.append("circle")
+                .attr("r", 15)
+                .attr("fill", "rgba(9, 82, 102, 0)") // Transparent fill, otherwise tooltip was disappearing in the middle of a circle
+                .attr("stroke", "rgba(9, 82, 102, 1)")
+                .on("mouseover", function() {
+                    d3.select(this) // 'this' refers to the current circle
+                        .attr("fill", "rgba(9, 82, 102, 0.4)"); // Change the fill color on hover
+                })
+                .on("mouseout", function() {
+                    d3.select(this) // 'this' refers to the current circle
+                        .attr("fill", "rgba(9, 82, 102, 0)"); // Reset the fill color when mouse leaves
+                });;
+
+              group.append("circle")
+                .attr("r", 3)
+                .attr("fill", "rgba(9, 82, 102, 1)");
+          })
+          // Add event listeners to display the tooltip
+          .on("mouseover", function(event, d) {
+              tooltip.style("opacity", 1) // Make the tooltip visible
+                  .html(`${d.name}, ${d.country}`);
+          })
+          .on("mousemove", (event) => {
+              tooltip.style("top", `${event.pageY - 50}px`) // Magic number
+                  .style("left", `${event.pageX}px`);
+          })
+          .on("mouseout", () => {
+              tooltip.style("opacity", 0); // Hide the tooltip
+          });
     }
 
-  }, [data]);
+    // Define zoom behavior
+    const zoom = d3.zoom()
+        .scaleExtent([1, 6]) // Set zoom limits
+        .on("zoom", (event) => {
+            const { x, y, k } = event.transform;
+            g.attr("transform", `translate(${x}, ${y}) scale(${k})`); // Apply zoom transform to the group
+        });
 
-  return <svg ref={svgRef} width={map_width} height={map_height}></svg>;
+    // Apply zoom behavior to the SVG
+    svg.call(zoom);
+  }, [points]);
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <svg ref={svgRef} width={map_width} height={map_height}></svg>
+      <div ref={tooltipRef} style={{ position: 'absolute', pointerEvents: 'none' }}></div>
+    </div>
+  );
 };
 
 export default WorldMap;
