@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App-header {
+  background-color: rgba(9, 82, 102, 1);
+  padding: 15px 0;
+  color: white;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+.App-header a {
+  color: white;
+}
+
+.App-header a:hover {
+  color: rgba(159, 232, 252, 0.6);
+}
