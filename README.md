@@ -8,11 +8,8 @@ The project uses the public API https://ergast.com/mrd/ that provides statistics
 This visualisation helps fans to quickly access the basic information of a specific season or driver, which can be useful in any discussions on the subject.
 
 ## To-do
-- fix tooltips margin
-- CircuitMap css for header
 - circuits api: body is 4-digit, return empty result if request is incorrect
-- think of more statistics to display
-- make the page look nice
+- think of more statistics to display - 2 requests more
 - take care about todos
 
 ## Project history

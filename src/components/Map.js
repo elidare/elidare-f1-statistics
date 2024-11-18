@@ -1,16 +1,26 @@
 import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
-import worldData from '../assets/countries-110m.json'; // TODO
+import worldData from '../assets/countries-110m.json';
 
-const WorldMap = ({ points }) => { // TODO add track names
+const WorldMap = ({ points }) => {
   const svgRef = useRef();
   const tooltipRef = useRef();
-  const map_width = 1200;
+  const map_width = 1000;
   const map_height = 645;
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
+    const svgElement = svg.node();
+    let fixTop = 0;
+    let fixLeft = 0;
+    const adaptTooltip = 10; // Move tooltip this amount of px away from mouse
+
+    if (svgElement) {
+      const position = svgElement.getBoundingClientRect();
+      fixTop = position.top;
+      fixLeft = position.left;
+    }
 
     // Clear previous SVG contents
     svg.selectAll("*").remove();
@@ -78,8 +88,8 @@ const WorldMap = ({ points }) => { // TODO add track names
                   .html(`${d.name}, ${d.country}`);
           })
           .on("mousemove", (event) => {
-              tooltip.style("top", `${event.pageY - 50}px`) // Magic number
-                  .style("left", `${event.pageX}px`);
+              tooltip.style("top", `${event.pageY - fixTop + adaptTooltip}px`) // Magic number
+                  .style("left", `${event.pageX - fixLeft + adaptTooltip}px`);
           })
           .on("mouseout", () => {
               tooltip.style("opacity", 0); // Hide the tooltip

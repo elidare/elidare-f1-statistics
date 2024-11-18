@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCircuits } from '../services/api';
 import WorldMap from './Map.js'
+import './CircuitMap.css';
 
 const CircuitMap = () => {
     const [year, setYear] = useState("2024"); // TODO magic number
@@ -39,9 +40,10 @@ const CircuitMap = () => {
     return (
         <div>
             <form>
-                <label>
-                    Pick a year from 1950 to 2024:&nbsp;
+                <div class="input-containter">
+                    <label for="yearNumber">Pick a year from 1950 to 2024:&nbsp;</label>
                     <input
+                        id="yearNumber"
                         type="number"
                         value={year}
                         onChange={handleChange}
@@ -49,7 +51,7 @@ const CircuitMap = () => {
                         max="2024"
                         required
                     />
-                </label>
+                </div>
             </form>
             <div>
                 {circuits && <WorldMap points={circuits} />}

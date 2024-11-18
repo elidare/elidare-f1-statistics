@@ -1,0 +1,84 @@
+.layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  color: rgba(245, 245, 255, 0.9);
+  border-bottom: 1px solid rgba(109, 182, 202, 0.8);
+  background-color: rgba(9, 82, 102, 1);
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 16px;
+}
+
+.header-menu {
+  display: flex;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  padding: 0;
+  margin: 0 24px;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: rgba(245, 245, 255, 0.9);
+  font-weight: bold;
+}
+
+.menu-list li a:hover {
+  color: rgba(159, 232, 252, 0.6);
+  text-decoration: underline;
+}
+
+/* Main Section Styling */
+.main {
+  flex: 1;
+  display: flex;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 200px;
+  background-color: rgba(9, 82, 102, 1);
+  border-right: 1px solid rgba(109, 182, 202, 0.8);
+  padding: 16px;
+  list-style: none;
+  margin: 0;
+  color: rgba(245, 245, 255, 0.9);
+}
+
+.sidebar p {
+  margin: 8px 0;
+}
+
+.sidebar p:first-child {
+  margin: 0;
+}
+
+.sidebar a {
+  color: rgba(245, 245, 255, 0.9);
+}
+
+.sidebar a:hover {
+  color: rgba(159, 232, 252, 0.6);
+}
+
+/* Content Section Styling */
+.content {
+  flex: 1;
+  padding: 0;
+  background-color: #fff;
+}
