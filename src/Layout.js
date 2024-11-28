@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CircuitMap from './components/CircuitMap';
+import DriversStandings from './components/DriversStandings';
 import './Layout.css';
 
 const Header = () => (
@@ -28,7 +29,6 @@ const Sidebar = () => (
   </aside>
 );
 
-const Drivers = () => <div>Drivers points</div> // TODO components
 const Teams = () => <div>Teams points</div>
 
 const Layout = () => (
@@ -41,7 +41,7 @@ const Layout = () => (
           <Routes>
             <Route path="/" element={<CircuitMap />} />
             <Route path="/circuits" element={<CircuitMap />} />
-            <Route path="/drivers" element={<Drivers />} />
+            <Route path="/drivers" element={<DriversStandings />} />
             <Route path="/teams" element={<Teams />} />
           </Routes>
         </div>

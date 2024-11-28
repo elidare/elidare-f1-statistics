@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { getCircuits } from '../services/api';
-import WorldMap from './Map.js'
+import { getDriversStandings } from '../services/api';
+import Chart from './StandingsChart.js'
 import './Input.css';
 
-const CircuitMap = () => {
+
+const DriversStandings = () => {
     const [year, setYear] = useState("2024"); // TODO magic number
     const [error, setError] = useState(null);
-    const [circuits, setCircuits] = useState(null);
+    const [drivers, setDrivers] = useState(null);
 
     const handleChange = (event) => {
         setYear(event.target.value);
     };
 
     useEffect(() => {
-        const getCircuitsData = async (year) => {
+        const getDriversStandingsData = async (year) => {
             try {
-                const responseData = await getCircuits(year);
-                const circuitsData = responseData.MRData.CircuitTable.Circuits.map((item) => {
-                    return { name: item.circuitName, country: item.Location.country, lat: item.Location.lat, long: item.Location.long }
+                const responseData = await getDriversStandings(year);
+                const driversData = responseData.MRData.StandingsTable.StandingsLists[0].DriverStandings.map((item) => {
+                    return {
+                        position: parseInt(item.position),
+                        points: parseInt(item.points),
+                        wins: parseInt(item.wins),
+                        driver: `${item.position}. ${item.Driver.givenName} ${item.Driver.familyName}`
+                    }
                 });
-                setCircuits(circuitsData);
+                setDrivers(driversData);
             } catch (err) {
                 setError("Failed to get circuits data. Please try again.");
             }
@@ -32,7 +38,7 @@ const CircuitMap = () => {
         let parsed_year = parseInt(year);
 
         if (parsed_year >= 1950 && parsed_year <= 2024) { // TODO magic numbers
-            getCircuitsData(parsed_year);
+            getDriversStandingsData(parsed_year);
         };
     }, [year]);
 
@@ -40,9 +46,9 @@ const CircuitMap = () => {
         <div>
             <form>
                 <div class="input-containter">
-                    <label for="yearNumber">This map shows which racing circuits were used in every season from 1950 to 2024:&nbsp;</label>
+                    <label for="yearNumberDrivers">TODO in every season from 1950 to 2024:&nbsp;</label>
                     <input
-                        id="yearNumber"
+                        id="yearNumberDrivers"
                         type="number"
                         value={year}
                         onChange={handleChange}
@@ -53,11 +59,11 @@ const CircuitMap = () => {
                 </div>
             </form>
             <div>
-                {circuits && <WorldMap points={circuits} />}
+                {drivers && <Chart data={drivers} />}
                 {error && <p>{error}</p>}
             </div>
         </div>
     )
 };
 
-export default CircuitMap;
+export default DriversStandings;
