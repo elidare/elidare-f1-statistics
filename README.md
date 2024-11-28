@@ -8,6 +8,8 @@ The project uses the public API https://ergast.com/mrd/ that provides statistics
 This visualisation helps fans to quickly access the basic information of a specific season or driver, which can be useful in any discussions on the subject.
 
 ## To-do
+- page title change
+- favicon change https://www.flaticon.com/free-icons/formula-1-car
 - circuits api: body is 4-digit, return empty result if request is incorrect
 - think of more statistics to display - 2 requests more
 - take care about todos

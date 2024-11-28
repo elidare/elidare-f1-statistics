@@ -41,7 +41,7 @@ const CircuitMap = () => {
         <div>
             <form>
                 <div class="input-containter">
-                    <label for="yearNumber">Pick a year from 1950 to 2024:&nbsp;</label>
+                    <label for="yearNumber">This map shows which racing circuits were used in every season from 1950 to 2024:&nbsp;</label>
                     <input
                         id="yearNumber"
                         type="number"
