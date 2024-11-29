@@ -25,6 +25,7 @@ const Sidebar = () => (
       <p>Uses public API <a href="https://ergast.com/mrd/" target="_blank" rel="noreferrer">by Ergast</a>.</p>
       <p>Source code <a href="https://github.com/elidare/elidare-f1-statistics/" target="_blank" rel="noreferrer">at github.</a></p>
       <p>(c) Elena Tishkovskaya</p>
+      <p class="sub">Favicon <a href="https://www.flaticon.com/free-icons/formula-1" title="formula 1 icons">Formula 1 icons created by Assia Benkerroum  - Flaticon</a></p>
     </div>
   </aside>
 );

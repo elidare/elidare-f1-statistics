@@ -86,3 +86,8 @@
   padding: 0;
   background-color: #fff;
 }
+
+.sub, .sub a {
+  color: rgba(159, 232, 252, 0.6);
+  font-size: 12px;
+}
