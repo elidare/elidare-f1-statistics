@@ -11,6 +11,7 @@ This visualisation helps fans to quickly access the basic information of a speci
 - circuits api: body is 4-digit, return empty result if request is incorrect
 - think of more statistics to display - 2 requests more
 - take care about todos
+- delete unnecessary files
 
 ## Project history
 Initially this project was supposed to include both frontend and backend. We had to create a public URL for the project in the very beginning, so Netlify was chosen as something we tried to hello-world in the beginning of the course.
