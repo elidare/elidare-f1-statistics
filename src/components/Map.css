@@ -1,0 +1,23 @@
+.map {
+    fill: rgba(159, 232, 252, 0.6);
+    stroke: rgba(109, 182, 202, 0.8);
+}
+
+.tooltip {
+    color: #ffffff;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.circle {
+    fill: rgba(9, 82, 102, 0);
+    stroke: rgba(9, 82, 102, 1);
+}
+
+.circle.hover {
+    fill: rgba(9, 82, 102, 0.4);
+}
