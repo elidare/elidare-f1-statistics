@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import CircuitMap from './components/CircuitMap';
 import DriversStandings from './components/DriversStandings';
 import './Layout.css';
@@ -10,9 +10,9 @@ const Header = () => (
     </h1>
     <nav className="header-menu">
       <ul className="menu-list">
-        <li><Link to="/circuits">Circuit map</Link></li>
-        <li><Link to="/drivers">Drivers points</Link></li>
-        <li><Link to="/teams">Teams points</Link></li>
+        <li><NavLink to="/circuits" className={({ isActive }) => isActive ? 'active' : ''}>Circuit map</NavLink></li>
+        <li><NavLink to="/drivers" className={({ isActive }) => isActive ? 'active' : ''}>Drivers points and wins</NavLink></li>
+        <li><NavLink to="/teams" className={({ isActive }) => isActive ? 'active' : ''}>Teams points</NavLink></li>
       </ul>
     </nav>
   </header>
