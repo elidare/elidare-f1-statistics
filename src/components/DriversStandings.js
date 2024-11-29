@@ -46,7 +46,9 @@ const DriversStandings = () => {
         <div>
             <form>
                 <div class="input-containter">
-                    <label for="yearNumberDrivers">TODO in every season from 1950 to 2024:&nbsp;</label>
+                    <label for="yearNumberDrivers">
+                        This chart shows drivers' points and wins in every season from 1950 to 2024:&nbsp;
+                    </label>
                     <input
                         id="yearNumberDrivers"
                         type="number"
