@@ -1,0 +1,25 @@
+.bar-points, .scale-points .tick text {
+    fill: #095266;
+}
+
+.bar-wins, .scale-wins .tick text {
+    fill: #0d7895;
+}
+
+.scale-points .domain, .scale-points .tick line {
+    stroke: #095266;
+}
+
+.scale-wins .domain, .scale-wins .tick line {
+    stroke: #0d7895; 
+}
+
+.tooltip {
+    color: #ffffff;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    pointer-events: none;
+}
