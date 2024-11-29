@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ClipLoader from "react-spinners/ClipLoader";
 import { getDriversStandings } from '../services/api';
 import Chart from './StandingsChart.js'
 import './Input.css';
@@ -8,6 +9,8 @@ const DriversStandings = () => {
     const [year, setYear] = useState("2024"); // TODO magic number
     const [error, setError] = useState(null);
     const [drivers, setDrivers] = useState(null);
+    // This page has loader because the data fetching lasts several seconds
+    const [loading, setLoading] = useState(false); // New loading state.
 
     const handleChange = (event) => {
         setYear(event.target.value);
@@ -15,6 +18,8 @@ const DriversStandings = () => {
 
     useEffect(() => {
         const getDriversStandingsData = async (year) => {
+            setLoading(true); // Set loading to true at the start of data fetching
+            setError(null);   // Reset any previous errors
             try {
                 const responseData = await getDriversStandings(year);
                 const driversData = responseData.MRData.StandingsTable.StandingsLists[0].DriverStandings.map((item) => {
@@ -28,6 +33,8 @@ const DriversStandings = () => {
                 setDrivers(driversData);
             } catch (err) {
                 setError("Failed to get circuits data. Please try again.");
+            } finally {
+                setLoading(false); // Set loading to false after data is fetched
             }
         };
 
@@ -61,7 +68,8 @@ const DriversStandings = () => {
                 </div>
             </form>
             <div>
-                {drivers && <Chart data={drivers} />}
+                {loading && <div class="loader-overlay"><ClipLoader/></div>} {/* Show loader when loading */}
+                {drivers && !loading && <Chart data={drivers} />}
                 {error && <p>{error}</p>}
             </div>
         </div>
