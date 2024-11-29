@@ -6,16 +6,15 @@ const Chart = ({ data }) => {
     const svgRef = useRef();
     const tooltipRef = useRef();
 
-    const margin = { top: 80, right: 20, bottom: 20, left: 150 };
-    const width = 800 - margin.left - margin.right;
-    const height = data.length * 40 - margin.top - margin.bottom;
-
     useEffect(() => {
         const svg = d3.select(svgRef.current);
         const svgElement = svg.node();
         let fixTop = 0;
         let fixLeft = 0;
         const adaptTooltip = 10; // Move tooltip this amount of px away from mouse
+        const margin = { top: 80, right: 20, bottom: 20, left: 150 };
+        const width = 800 - margin.left - margin.right;
+        const height = data.length * 40 - margin.top - margin.bottom;
 
         if (svgElement) {
             const position = svgElement.getBoundingClientRect();
