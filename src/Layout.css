@@ -43,6 +43,10 @@
   text-decoration: underline;
 }
 
+.menu-list li a.active {
+  color: rgba(159, 232, 252, 0.6);
+}
+
 /* Main Section Styling */
 .main {
   flex: 1;
