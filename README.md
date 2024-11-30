@@ -5,10 +5,12 @@ Public URL https://elidare-f1-statistics.netlify.app/.
 
 The project uses the public API https://ergast.com/mrd/ that provides statistics on seasons, e.g. what racing tracks were used, what drivers were present on track and what teams they were in.
 
-This visualisation helps fans to quickly access the basic information of a specific season or driver, which can be useful in any discussions on the subject.
+This visualisation project helps fans to see what tracks were used in the specific season and how wide the racing geography was.
+Also, there are drivers and constructors bar charts with number of points and wins for the selected season.
 
-## To-do
-- documentation
+## Project stack
+Frontend only, React, axios for API request, d3 for graphs.
+
 
 ## Project history
 Initially this project was supposed to include both frontend and backend. We had to create a public URL for the project in the very beginning, so Netlify was chosen as something we tried to hello-world in the beginning of the course.
