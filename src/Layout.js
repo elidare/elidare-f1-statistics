@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import CircuitMap from './components/CircuitMap';
 import DriversStandings from './components/DriversStandings';
+import ConstructorsStandings from './components/ConstructorsStandings';
 import './Layout.css';
 
 const Header = () => (
@@ -12,7 +13,7 @@ const Header = () => (
       <ul className="menu-list">
         <li><NavLink to="/circuits" className={({ isActive }) => isActive ? 'active' : ''}>Circuit map</NavLink></li>
         <li><NavLink to="/drivers" className={({ isActive }) => isActive ? 'active' : ''}>Drivers points and wins</NavLink></li>
-        <li><NavLink to="/teams" className={({ isActive }) => isActive ? 'active' : ''}>Teams points</NavLink></li>
+        <li><NavLink to="/constructors" className={({ isActive }) => isActive ? 'active' : ''}>Constructors points and wins</NavLink></li>
       </ul>
     </nav>
   </header>
@@ -30,8 +31,6 @@ const Sidebar = () => (
   </aside>
 );
 
-const Teams = () => <div>Teams points</div>
-
 const Layout = () => (
   <Router>
     <div className="layout">
@@ -43,7 +42,7 @@ const Layout = () => (
             <Route path="/" element={<CircuitMap />} />
             <Route path="/circuits" element={<CircuitMap />} />
             <Route path="/drivers" element={<DriversStandings />} />
-            <Route path="/teams" element={<Teams />} />
+            <Route path="/constructors" element={<ConstructorsStandings />} />
           </Routes>
         </div>
       </div>

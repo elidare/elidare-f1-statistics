@@ -18,7 +18,7 @@ Initially this project was supposed to include both frontend and backend. We had
 
 I am a Manual QA, and my stack usually includes Python nowadays, and I did a lot of vanilla Javascript years ago as a Frontend Developer. I don't have experience with neither React nor Express at all, so at first I chose this stack to try it and familiarize with it.
 My plan was:
-Visualization on d3 <- React frontend <- Express backend as a server -> [a third-party API](https://ergast.com/mrd/)
+Visualization on d3 <- React frontend <- Express backend as a server -> [a third-party API](https://ergast.com/mrd/).
 
 I started with the backend part, because it looked more unfamiliar and it seemed like a usual flow when building an application, first API, then frontend calling this API. So my first step was to create an Express API running on Netlify - it turned out that Netlify doesn't support servers and uses Netlify Functions for this. I made it work, at least one API endpoint was ready and deployed.
 
