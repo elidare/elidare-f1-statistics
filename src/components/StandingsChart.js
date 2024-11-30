@@ -69,7 +69,7 @@ const Chart = ({ data }) => {
                     .html(d.points > 1 ? `${d.points} points` : `${d.points} point`);
             })
             .on("mousemove", (event) => {
-                tooltip.style("top", `${event.pageY - fixTop + adaptTooltip}px`) // Magic number
+                tooltip.style("top", `${event.pageY - fixTop + adaptTooltip}px`)
                     .style("left", `${event.pageX - fixLeft + adaptTooltip}px`);
             })
             .on("mouseout", () => {
@@ -92,7 +92,7 @@ const Chart = ({ data }) => {
                     .html(d.wins > 1 ? `${d.wins} wins` : `${d.wins} win`);
             })
             .on("mousemove", (event) => {
-                tooltip.style("top", `${event.pageY - fixTop + adaptTooltip}px`) // Magic number
+                tooltip.style("top", `${event.pageY - fixTop + adaptTooltip}px`)
                     .style("left", `${event.pageX - fixLeft + adaptTooltip}px`);
             })
             .on("mouseout", () => {
@@ -117,7 +117,7 @@ const Chart = ({ data }) => {
             .attr("class", "axis-label")
             .attr("text-anchor", "middle")
             .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
-            .attr("y", margin.top / 2) // Position below x-axis
+            .attr("y", margin.top / 2) // Position above x-axis
             .text("Season points and wins");
 
         // Add y-axis

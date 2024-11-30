@@ -21,3 +21,7 @@
 .circle.hover {
     fill: rgba(9, 82, 102, 0.4);
 }
+
+.inner-circle {
+    fill: rgba(9, 82, 102, 1);
+}
