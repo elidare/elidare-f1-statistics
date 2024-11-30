@@ -60,7 +60,7 @@ const WorldMap = ({ points }) => {
                 group
                     .append("circle")
                     .attr("r", 3)
-                    .attr("fill", "rgba(9, 82, 102, 1)");
+                    .attr("class", "inner-circle");
 
                 group
                     .append("circle")
@@ -81,7 +81,7 @@ const WorldMap = ({ points }) => {
                     .html(`${d.name}, ${d.country}`);
             })
             .on("mousemove", (event) => {
-                tooltip.style("top", `${event.pageY - fixTop + adaptTooltip}px`) // Magic number
+                tooltip.style("top", `${event.pageY - fixTop + adaptTooltip}px`)
                     .style("left", `${event.pageX - fixLeft + adaptTooltip}px`);
             })
             .on("mouseout", () => {

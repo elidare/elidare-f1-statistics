@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { getCircuits } from '../services/api';
 import WorldMap from './Map.js'
 import './Input.css';
+import { MIN_YEAR, MAX_YEAR, DEFAULT_YEAR } from '../utils/constants';
 
 const CircuitMap = () => {
-    const [year, setYear] = useState("2024"); // TODO magic number
+    const [year, setYear] = useState(DEFAULT_YEAR.toString());
     const [error, setError] = useState(null);
     const [circuits, setCircuits] = useState(null);
 
@@ -31,7 +32,7 @@ const CircuitMap = () => {
 
         let parsed_year = parseInt(year);
 
-        if (parsed_year >= 1950 && parsed_year <= 2024) { // TODO magic numbers
+        if (parsed_year >= MIN_YEAR && parsed_year <= MAX_YEAR) {
             getCircuitsData(parsed_year);
         };
     }, [year]);
@@ -40,14 +41,16 @@ const CircuitMap = () => {
         <div>
             <form>
                 <div class="input-containter">
-                    <label for="yearNumber">This map shows which racing circuits were used in every season from 1950 to 2024:&nbsp;</label>
+                    <label for="yearNumber">
+                        This map shows which racing circuits were used in every season from {MIN_YEAR} to {MAX_YEAR}:&nbsp;
+                    </label>
                     <input
                         id="yearNumber"
                         type="number"
                         value={year}
                         onChange={handleChange}
-                        min="1950"
-                        max="2024"
+                        min={MIN_YEAR}
+                        max={MAX_YEAR}
                         required
                     />
                 </div>

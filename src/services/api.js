@@ -48,7 +48,7 @@ export const getConstructorsStandings = async (year) => {
 
         return response.data;
     } catch (error) {
-        console.error('Error in /driversStandings:', error);
+        console.error('Error in /constructorStandings:', error);
         throw error;
     }
 };

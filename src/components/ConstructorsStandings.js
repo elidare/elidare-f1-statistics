@@ -3,10 +3,11 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { getConstructorsStandings } from '../services/api';
 import Chart from './StandingsChart.js'
 import './Input.css';
+import { MIN_CONSTRUCTOR_YEAR, MAX_YEAR, DEFAULT_YEAR } from '../utils/constants';
 
 
 const ConstructorsStandings = () => {
-    const [year, setYear] = useState("2024"); // TODO magic number
+    const [year, setYear] = useState(DEFAULT_YEAR.toString());
     const [error, setError] = useState(null);
     const [constructors, setConstructors] = useState(null);
     // This page has loader because the data fetching lasts several seconds
@@ -44,7 +45,7 @@ const ConstructorsStandings = () => {
 
         let parsed_year = parseInt(year);
 
-        if (parsed_year >= 1958 && parsed_year <= 2024) { // TODO magic numbers
+        if (parsed_year >= MIN_CONSTRUCTOR_YEAR && parsed_year <= MAX_YEAR) {
             getConstructorsStandingsData(parsed_year);
         };
     }, [year]);
@@ -54,15 +55,15 @@ const ConstructorsStandings = () => {
             <form>
                 <div class="input-containter">
                     <label for="yearNumberDrivers">
-                        This chart shows constructors' points and wins in the selected season from 1958 to 2024:&nbsp;
+                        This chart shows constructors' points and wins in the selected season from {MIN_CONSTRUCTOR_YEAR} to {MAX_YEAR}:&nbsp;
                     </label>
                     <input
                         id="yearNumberDrivers"
                         type="number"
                         value={year}
                         onChange={handleChange}
-                        min="1958"
-                        max="2024"
+                        min={MIN_CONSTRUCTOR_YEAR}
+                        max={MAX_YEAR}
                         required
                     />
                 </div>
