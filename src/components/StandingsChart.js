@@ -44,7 +44,7 @@ const Chart = ({ data }) => {
 
         const yScale = d3
             .scaleBand()
-            .domain(data.map((d) => d.driver)) // Map names to bands
+            .domain(data.map((d) => d.name)) // Map names to bands
             .range([0, height])
             .padding(0.1);
 
@@ -60,7 +60,7 @@ const Chart = ({ data }) => {
             .enter()
             .append("rect")
             .attr("class", "bar-points")
-            .attr("y", (d) => yScale(d.driver))
+            .attr("y", (d) => yScale(d.name))
             .attr("height", yScale.bandwidth() / 2)
             .attr("x", 0)
             .attr("width", (d) => xScalePoints(d.points))
@@ -83,7 +83,7 @@ const Chart = ({ data }) => {
             .enter()
             .append("rect")
             .attr("class", "bar-wins")
-            .attr("y", (d) => (yScale(d.driver) + yScale.bandwidth() / 2))
+            .attr("y", (d) => (yScale(d.name) + yScale.bandwidth() / 2))
             .attr("height", yScale.bandwidth() / 2)
             .attr("x", 0)
             .attr("width", (d) => xScaleWins(d.wins))

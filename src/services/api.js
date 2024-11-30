@@ -4,7 +4,8 @@ const options = {
     host: 'ergast.com',
     path: '/api/f1/',
     circuits: '/circuits.json',
-    driversStandings: '/driverStandings.json'
+    driverStandings: '/driverStandings.json',
+    constructorStandings: '/constructorStandings.json'
 }
 
 // Create an Axios instance with a base URL
@@ -31,7 +32,19 @@ export const getCircuits = async (year) => {
 // Get drivers standings by year
 export const getDriversStandings = async (year) => {
     try {
-        const response = await api.get(`https://${options.host}${options.path}${year}${options.driversStandings}`);
+        const response = await api.get(`https://${options.host}${options.path}${year}${options.driverStandings}`);
+
+        return response.data;
+    } catch (error) {
+        console.error('Error in /driversStandings:', error);
+        throw error;
+    }
+};
+
+// Get constructors standings by year
+export const getConstructorsStandings = async (year) => {
+    try {
+        const response = await api.get(`https://${options.host}${options.path}${year}${options.constructorStandings}`);
 
         return response.data;
     } catch (error) {
