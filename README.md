@@ -3,7 +3,9 @@ A fullstack studying project for LUT Master's, 2024.
 
 Public URL https://elidare-f1-statistics.netlify.app/.
 
-The project is based on the public API https://ergast.com/mrd/ that provides statistics on seasons, e.g. what racing tracks were used, what drivers were present on track and what teams they were in. Unfortunately, the initial API is being shut down, so the new API https://api.jolpi.ca/ergast/ is used. Thread about switching APIs here https://github.com/theOehrly/Fast-F1/discussions/445
+The project is based on the public API https://ergast.com/mrd/ that provides statistics on seasons, e.g. what racing tracks were used, what drivers were present on track and what teams they were in. Unfortunately, the initial API is being shut down, so the new API https://api.jolpi.ca/ergast/ is used. Thread about switching APIs here https://github.com/theOehrly/Fast-F1/discussions/445.
+
+**NB: API can be down due to intentional downtime for updates, so please if you get unexpected behaviour when reviewing the project, don't be too harsh on my grade, just wait some time.**
 
 This visualisation project helps fans to see what tracks were used in the specific season and how wide the racing geography was.
 Also, there are drivers and constructors bar charts with number of points and wins for the selected season.
