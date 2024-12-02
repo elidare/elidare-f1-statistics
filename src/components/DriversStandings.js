@@ -25,10 +25,9 @@ const DriversStandings = () => {
                 const responseData = await getDriversStandings(year);
                 const driversData = responseData.MRData.StandingsTable.StandingsLists[0].DriverStandings.map((item) => {
                     return {
-                        position: parseInt(item.position),
                         points: parseInt(item.points),
                         wins: parseInt(item.wins),
-                        name: `${item.position}. ${item.Driver.givenName} ${item.Driver.familyName}`
+                        name: `${item.position || item.positionText}. ${item.Driver.givenName} ${item.Driver.familyName}`
                     }
                 });
                 setDrivers(driversData);

@@ -25,10 +25,9 @@ const ConstructorsStandings = () => {
                 const responseData = await getConstructorsStandings(year);
                 const constructorsData = responseData.MRData.StandingsTable.StandingsLists[0].ConstructorStandings.map((item) => {
                     return {
-                        position: parseInt(item.position),
                         points: parseInt(item.points),
                         wins: parseInt(item.wins),
-                        name: `${item.position}. ${item.Constructor.name}`
+                        name: `${item.position || item.positionText}. ${item.Constructor.name}`
                     }
                 });
                 setConstructors(constructorsData);
