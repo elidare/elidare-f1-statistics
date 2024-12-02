@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const options = {
-    host: 'ergast.com',
-    path: '/api/f1/',
+    host: 'api.jolpi.ca',
+    path: '/ergast/f1/',
     circuits: '/circuits.json',
     driverStandings: '/driverStandings.json',
     constructorStandings: '/constructorStandings.json'
