@@ -66,7 +66,7 @@ const WorldMap = ({ points }) => {
 
         group
           .append("circle")
-          .attr("r", 15)
+          .attr("r", 5)
           .attr("class", "circle")
           .on("mouseover", function () {
             d3.select(this) // 'this' refers to the current circle
