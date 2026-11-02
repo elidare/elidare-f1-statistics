@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   NavLink,
+  Navigate,
 } from "react-router-dom";
 import CircuitMap from "./components/CircuitMap";
 import DriversStandings from "./components/DriversStandings";
@@ -89,7 +90,7 @@ const Layout = () => (
         <Sidebar />
         <div className="content">
           <Routes>
-            <Route path="/" element={<CircuitMap />} />
+            <Route path="/" element={<Navigate to="/circuits" replace />} />
             <Route path="/circuits" element={<CircuitMap />} />
             <Route path="/drivers" element={<DriversStandings />} />
             <Route path="/constructors" element={<ConstructorsStandings />} />
