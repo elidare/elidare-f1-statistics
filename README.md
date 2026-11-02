@@ -1,4 +1,5 @@
 # elidare-f1-statistics
+
 A fullstack studying project for LUT Master's, 2024.
 
 Public URL https://elidare-f1-statistics.netlify.app/.
@@ -11,10 +12,11 @@ This visualisation project helps fans to see what tracks were used in the specif
 Also, there are drivers and constructors bar charts with number of points and wins for the selected season.
 
 ## Project stack
+
 Frontend only, React, axios for API request, d3 for graphs.
 
-
 ## Project history
+
 Initially this project was supposed to include both frontend and backend. We had to create a public URL for the project in the very beginning, so Netlify was chosen as something we tried to hello-world in the beginning of the course.
 
 I am a Manual QA, and my stack usually includes Python nowadays, and I did a lot of vanilla Javascript years ago as a Frontend Developer. I don't have experience with neither React nor Express at all, so at first I chose this stack to try it and familiarize with it.
@@ -26,6 +28,7 @@ I started with the backend part, because it looked more unfamiliar and it seemed
 Having started to create and deploy frontend, I encountered quite a lot of complications. Building the app on Netlify was not obvious, hours spent on experiments, talking to chatGPT and googling. Finally, public URL showed the `index.html` instead of 404, but guess what - Netlify function for `/api/` started to return 404 instead of data. Quick googling didn't help. Asking chatGPT didn't help.
 
 At this point I took a deep breath and had a look at the project. Main points I noticed:
+
 - I am very short of time, so I need to focus on something that will be working good enough. In addition I have several projects for other university courses, that also require my attention and effort.
 - I wanted to include Express only for the sake of learning it and server architecture, but at the moment it is not just Express, but a very narrow specific feature Netlify functions that causing problems. I keep solving more Netlify issues than Express, which is not my goal with this project.
 - This project doesn't really require backend (as I said, I included backend for the sake of including backend), so best practice would be to follow Keep It Simple Stupid principle.
