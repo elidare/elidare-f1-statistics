@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { getConstructorsStandings } from "../services/api";
 import Chart from "./StandingsChart.js";
-import "./Input.css";
+import YearInput from "./YearInput.js";
 import {
   MIN_CONSTRUCTOR_YEAR,
   MAX_YEAR,
@@ -15,10 +15,6 @@ const ConstructorsStandings = () => {
   const [constructors, setConstructors] = useState(null);
   // This page has loader because the data fetching lasts several seconds
   const [loading, setLoading] = useState(false); // New loading state.
-
-  const handleChange = (event) => {
-    setYear(event.target.value);
-  };
 
   useEffect(() => {
     const getConstructorsStandingsData = async (year) => {
@@ -57,23 +53,12 @@ const ConstructorsStandings = () => {
 
   return (
     <div>
-      <form>
-        <div class="input-containter">
-          <label for="yearNumberDrivers">
-            This chart shows constructors' points and wins in the selected
-            season from {MIN_CONSTRUCTOR_YEAR} to {MAX_YEAR}:&nbsp;
-          </label>
-          <input
-            id="yearNumberDrivers"
-            type="number"
-            value={year}
-            onChange={handleChange}
-            min={MIN_CONSTRUCTOR_YEAR}
-            max={MAX_YEAR}
-            required
-          />
-        </div>
-      </form>
+      <YearInput
+        year={year}
+        minYear={MIN_CONSTRUCTOR_YEAR}
+        maxYear={MAX_YEAR}
+        onChange={setYear}
+      />
       <div>
         {loading && (
           <div class="loader-overlay">

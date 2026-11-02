@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getCircuits } from "../services/api";
 import WorldMap from "./Map.js";
-import "./Input.css";
+import YearInput from "./YearInput.js";
 import { MIN_YEAR, MAX_YEAR, DEFAULT_YEAR } from "../utils/constants";
 
 const CircuitMap = () => {
   const [year, setYear] = useState(DEFAULT_YEAR.toString());
   const [error, setError] = useState(null);
   const [circuits, setCircuits] = useState(null);
-
-  const handleChange = (event) => {
-    setYear(event.target.value);
-  };
 
   useEffect(() => {
     const getCircuitsData = async (year) => {
@@ -46,23 +42,12 @@ const CircuitMap = () => {
 
   return (
     <div>
-      <form>
-        <div class="input-containter">
-          <label for="yearNumber">
-            This map shows which racing circuits were used in every season from{" "}
-            {MIN_YEAR} to {MAX_YEAR}:&nbsp;
-          </label>
-          <input
-            id="yearNumber"
-            type="number"
-            value={year}
-            onChange={handleChange}
-            min={MIN_YEAR}
-            max={MAX_YEAR}
-            required
-          />
-        </div>
-      </form>
+      <YearInput
+        year={year}
+        minYear={MIN_YEAR}
+        maxYear={MAX_YEAR}
+        onChange={setYear}
+      />
       <div>
         {circuits && <WorldMap points={circuits} />}
         {error && <p>{error}</p>}
